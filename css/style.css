@@ -2,6 +2,7 @@
 body {
   background: orange;
   background: linear-gradient(-45deg, #00d0ff, #00ff87) fixed;
+  background-size: cover;
   font-family: 'Arial';
 }
 
