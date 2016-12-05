@@ -1,0 +1,59 @@
+/*page style*/
+body {
+  background: orange;
+  background: linear-gradient(-45deg, #00d0ff, #00ff87) fixed;
+  font-family: 'Arial';
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.screenreader {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding:0 !important;
+  border:0 !important;
+  height: 1px !important; 
+  width: 1px !important; 
+  overflow: hidden;
+}
+
+/*card style*/
+.card a {
+  color: #fff;
+  font-weight: bold;
+}
+.card canvas {
+  margin: 0;
+  padding: 0;
+}
+.card input[type='range'] {
+  width: 50%;
+}
+.card small {
+  font-size: 0.6em;
+}
+.card {
+  background: rgba(221,221,221,0.3);
+  box-shadow: 0 4px 8px #444;
+  color: #fff;
+  font-family: 'Poiret One', cursive, 'Arial';
+  font-size: 1.4em; 
+  text-align: center;
+  display: block;
+  border-radius: 3px;
+  max-width: 96vw;
+  width: 300px;
+  margin: 1em;
+}
+.flex-input-box {
+  display:flex;
+  justify-content: space-between;
+}
+.timer-setting-box {
+  margin: 1em;
+}
