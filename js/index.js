@@ -21,12 +21,7 @@ $(function() {
   
   //Initialize text. setTimeOut is needed in order to give enough time to the canvas for loading the font.
   setTimeout(function() {
-    ctx.font = lmin*0.15+"px 'Poiret One', 'Arial'";
-    ctx.textBaseline = "ideographic";
-    ctx.fillText(workMin+':00', w/2, h/2+lmin*0.075);
-    ctx.font = lmin*0.075+"px 'Poiret One', 'Arial'";
-    ctx.textBaseline = "top";
-    ctx.fillText(restMin+':00', w/2, h/2+lmin*0.075);
+    textUpdate(ctx, workMin, restMin, 0, 60, w, h, lmin);
   }, 150);
   
   //IE doesn't seem to support the input event, however it work with the the change event.
@@ -42,12 +37,7 @@ $(function() {
     ctx.clearRect(0,0,250,250);
     
     //Update the text;
-    ctx.font = lmin*0.15+"px 'Poiret One', 'Arial'";
-    ctx.textBaseline = "ideographic";
-    ctx.fillText(workMin+':00', w/2, h/2+lmin*0.075);
-    ctx.font = lmin*0.075+"px 'Poiret One', 'Arial'";
-    ctx.textBaseline = "top";
-    ctx.fillText(restMin+':00', w/2, h/2+lmin*0.075);
+    textUpdate(ctx, workMin, restMin, 0, 60, w, h, lmin);
     });
   
   $('#clock').click(function() {
