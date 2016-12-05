@@ -2,7 +2,7 @@
 
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
-        id        = "com.alf3run.tictactoe2players"
+        id        = "com.alf3run.pomoClock"
         version   = "1.0.0">
 
     <name>PomoClock</name>
