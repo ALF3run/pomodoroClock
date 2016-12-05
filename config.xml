@@ -5,10 +5,10 @@
         id        = "com.alf3run.tictactoe2players"
         version   = "1.0.0">
 
-    <name>TicTacToe</name>
+    <name>PomoClock</name>
 
     <description>
-        TicTacToe game based on FreeCodeCamp project.
+        Pomodoro Clock based on FreeCodeCamp project.
     </description>
 
     <author href="https://codepen.io/ALF3run/">
