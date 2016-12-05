@@ -36,6 +36,7 @@ $(function() {
     min = 1;
     sec = 1;
     perc = 0;
+    rest = false;
     
     //Clear the canvas before drawing on it;
     ctx.clearRect(0,0,250,250);
