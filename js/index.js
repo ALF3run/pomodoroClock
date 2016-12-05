@@ -7,14 +7,13 @@ $(function() {
   var r = lmin/2 - lmin*0.05;
   var run = false;
   var workMin = $('#work-range').val();
-  var pauseMin = $('#pause-range').val();
+  var restMin = $('#rest-range').val();
   var min = 1;
   var sec = 1;
   var timer = 0;
   var perc = 0;
-  var pause = false;
+  var rest = false;
   
-  //Define canvas drawing style;
   ctx.strokeStyle = '#FFF';
   ctx.lineWidth = 2;
   ctx.fillStyle = '#FFF';
@@ -27,13 +26,13 @@ $(function() {
     ctx.fillText(workMin+':00', w/2, h/2+lmin*0.075);
     ctx.font = lmin*0.075+"px 'Poiret One', 'Arial'";
     ctx.textBaseline = "top";
-    ctx.fillText(pauseMin+':00', w/2, h/2+lmin*0.075);
+    ctx.fillText(restMin+':00', w/2, h/2+lmin*0.075);
   }, 150);
   
   //IE doesn't seem to support the input event, however it work with the the change event.
-  $('#work-range, #pause-range').on("input change", function() {
+  $('#work-range, #rest-range').on("input change", function() {
     workMin = $('#work-range').val();
-    pauseMin = $('#pause-range').val();
+    restMin = $('#rest-range').val();
     min = 1;
     sec = 1;
     perc = 0;
@@ -47,14 +46,14 @@ $(function() {
     ctx.fillText(workMin+':00', w/2, h/2+lmin*0.075);
     ctx.font = lmin*0.075+"px 'Poiret One', 'Arial'";
     ctx.textBaseline = "top";
-    ctx.fillText(pauseMin+':00', w/2, h/2+lmin*0.075);
+    ctx.fillText(restMin+':00', w/2, h/2+lmin*0.075);
     });
   
   $('#clock').click(function() {
   if(run === false) {
     run = true;
 
-    $('#work-range, #pause-range').prop('disabled', true);
+    $('#work-range, #rest-range').prop('disabled', true);
     
     //Update the timer;
     timer = setInterval(function() {      
@@ -62,7 +61,7 @@ $(function() {
       ctx.clearRect(0,0,250,250);
       
       //Work time...
-      if(pause === false) {
+      if(rest === false) {
         //Update the circle;
         ctx.beginPath();
         ctx.arc(w/2, h/2, r, -Math.PI/2, 2*(++perc/(workMin*60))*Math.PI-Math.PI/2);
@@ -72,82 +71,52 @@ $(function() {
         if(sec === 60 && min == workMin) {
           document.querySelector('#bell').play();
           
-          ctx.font = lmin*0.15+"px 'Poiret One', 'Arial'";
-          ctx.textBaseline = "ideographic";
-          ctx.fillText(pauseMin+':00', w/2, h/2+lmin*0.075);
-          ctx.font = lmin*0.075+"px 'Poiret One', 'Arial'";
-          ctx.textBaseline = "top";
-          ctx.fillText(workMin+':00', w/2, h/2+lmin*0.075);
+          textUpdate(ctx, restMin, workMin, 0, sec, w, h, lmin);
           
           perc = 0;
-          pause = true;
+          rest = true;
           sec = 1;
           min = 1;
         }
         else if(sec === 60){
-          ctx.font = lmin*0.15+"px 'Poiret One', 'Arial'";
-          ctx.textBaseline = "ideographic";
-          ctx.fillText(workMin-min+':00', w/2, h/2+lmin*0.075);
-          ctx.font = lmin*0.075+"px 'Poiret One', 'Arial'";
-          ctx.textBaseline = "top";
-          ctx.fillText(pauseMin+':00', w/2, h/2+lmin*0.075);
+          textUpdate(ctx, workMin, restMin, min, sec, w, h, lmin);
           
           min++;
           sec = 1;
         }
         else {
-          ctx.font = lmin*0.15+"px 'Poiret One', 'Arial'";
-          ctx.textBaseline = "ideographic";
-          ctx.fillText((workMin-min)+':'+(60-sec), w/2, h/2+lmin*0.075);
-          ctx.font = lmin*0.075+"px 'Poiret One', 'Arial'";
-          ctx.textBaseline = "top";
-          ctx.fillText(pauseMin+':00', w/2, h/2+lmin*0.075);
+          textUpdate(ctx, workMin, restMin, min, sec, w, h, lmin);
           
           sec++;
         }  
       }
       
-      //Pause time!
+      //rest time!
       else {
         //Update the circle;
         ctx.beginPath();
-        ctx.arc(w/2, h/2, r, 2*(++perc/(pauseMin*60))*Math.PI-Math.PI/2, 2*Math.PI-Math.PI/2);
+        ctx.arc(w/2, h/2, r, 2*(++perc/(restMin*60))*Math.PI-Math.PI/2, 2*Math.PI-Math.PI/2);
         ctx.stroke();
         
         //Update the text;
-        if(sec === 60 && min == pauseMin) {
+        if(sec === 60 && min == restMin) {
           document.querySelector('#bell').play();
         
-          ctx.font = lmin*0.15+"px 'Poiret One', 'Arial'";
-          ctx.textBaseline = "ideographic";
-          ctx.fillText(workMin+':00', w/2, h/2+lmin*0.075);
-          ctx.font = lmin*0.075+"px 'Poiret One', 'Arial'";
-          ctx.textBaseline = "top";
-          ctx.fillText(pauseMin+':00', w/2, h/2+lmin*0.075);
+          textUpdate(ctx, workMin, restMin, 0, sec, w, h, lmin);
           
           perc = 0;
-          pause = false;
+          rest = false;
           sec = 1;
           min = 1;
         }
         else if(sec === 60){
-          ctx.font = lmin*0.15+"px 'Poiret One', 'Arial'";
-          ctx.textBaseline = "ideographic";
-          ctx.fillText(pauseMin-min+':00', w/2, h/2+lmin*0.075);
-          ctx.font = lmin*0.075+"px 'Poiret One', 'Arial'";
-          ctx.textBaseline = "top";
-          ctx.fillText(workMin+':00', w/2, h/2+lmin*0.075);
+          textUpdate(ctx, restMin, workMin, min, sec, w, h, lmin);
           
           min++;
           sec = 1;
         }
         else {
-          ctx.font = lmin*0.15+"px 'Poiret One', 'Arial'";
-          ctx.textBaseline = "ideographic";
-          ctx.fillText((pauseMin-min)+':'+(60-sec), w/2, h/2+lmin*0.075);
-          ctx.font = lmin*0.075+"px 'Poiret One', 'Arial'";
-          ctx.textBaseline = "top";
-          ctx.fillText(workMin+':00', w/2, h/2+lmin*0.075);
+          textUpdate(ctx, restMin, workMin, min, sec, w, h, lmin);
           
           sec++;
         }
@@ -156,8 +125,22 @@ $(function() {
   }
   else {
     run = false;
-    $('#work-range, #pause-range').prop('disabled', false);
+    $('#work-range, #rest-range').prop('disabled', false);
     return clearInterval(timer);
     }
   });
 });
+
+function textUpdate(ctx, bigTextMin, smallTextMin, min, sec, w, h, lmin) {
+  var secStr = (60-sec).toString();
+  
+  ctx.font = lmin*0.15+"px 'Poiret One', 'Arial'";
+  ctx.textBaseline = "ideographic";
+  if(secStr.length == 2) ctx.fillText((bigTextMin-min)+':'+(60-sec), w/2, h/2+lmin*0.075);
+  else ctx.fillText((bigTextMin-min)+':0'+(60-sec), w/2, h/2+lmin*0.075);
+  ctx.font = lmin*0.075+"px 'Poiret One', 'Arial'";
+  ctx.textBaseline = "top";
+  ctx.fillText(smallTextMin+':00', w/2, h/2+lmin*0.075);
+          
+  return 0;
+}
