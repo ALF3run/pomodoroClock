@@ -14,6 +14,7 @@ $(function() {
   var perc = 0;
   var pause = false;
   
+  //Define canvas drawing style;
   ctx.strokeStyle = '#FFF';
   ctx.lineWidth = 2;
   ctx.fillStyle = '#FFF';
