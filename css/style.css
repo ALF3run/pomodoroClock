@@ -1,7 +1,10 @@
 /*page style*/
 body {
   background: orange;
-  background: linear-gradient(-45deg, #00d0ff, #00ff87) fixed;
+  background: linear-gradient(-45deg, #00d0ff, #00ff87);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
   font-family: 'Arial';
 }
