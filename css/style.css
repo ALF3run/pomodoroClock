@@ -11,7 +11,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: 'Arial';
+  font-family: 'Arial Narrow', 'Arial';
 }
 
 .flex-container {
@@ -50,7 +50,7 @@ body {
   background: rgba(221,221,221,0.3);
   box-shadow: 0 4px 8px #444;
   color: #fff;
-  font-family: 'Arial';
+  font-family: 'Arial Narrow', 'Arial';
   font-size: 1.4em; 
   text-align: center;
   display: block;
