@@ -12,11 +12,6 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   font-family: 'Arial';
-  animation-name: bgfade;
-  animation-duration: 1s;
-  animation-play-state: paused;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
 }
 
 .flex-container {
