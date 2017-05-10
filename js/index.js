@@ -1,5 +1,5 @@
 //Canvas version
-$(function() {
+$(document).ready(function() {
   var ctx = clock.getContext('2d');
   var h = clock.height;
   var w = clock.width;
