@@ -126,7 +126,7 @@ function textUpdate(ctx, bigTextMin, smallTextMin, min, sec, w, h, lmin) {
   var secStr = (60-sec).toString();
   
   ctx.font = lmin*0.15+"px 'Poiret One', 'Arial'";
-  ctx.textBaseline = "ideographic";
+  ctx.textBaseline = "bottom";
   if(secStr.length == 2) ctx.fillText((bigTextMin-min)+':'+(60-sec), w/2, h/2+lmin*0.075);
   else ctx.fillText((bigTextMin-min)+':0'+(60-sec), w/2, h/2+lmin*0.075);
   ctx.font = lmin*0.075+"px 'Poiret One', 'Arial'";
