@@ -46,31 +46,36 @@ $(document).ready(function() {
     $('#round-counter').css('opacity', 0).text('Round ' + round);
     });
 
-  $('#clock').click(function() {
+  $('#clock').click(pomodoroToggle);
+  $(document).keypress(function(e) {
+    if(e.keyCode == 32) pomodoroToggle();
+  });
+
+  function pomodoroToggle() {
     if(run === false) {
       run = true;
-
+  
       $('#round-range, #work-range, #rest-range').prop('disabled', true);
       $('#round-counter').css('opacity', 1);
-
+  
       //Update the timer;
       timer = setInterval(function() {
         //Clear the canvas before drawing on it;
         ctx.clearRect(0,0,250,250);
-
+  
         //Work time...
         if(rest === false && round <= rounds) {
           //Update the circle;
           ctx.beginPath();
           ctx.arc(w/2, h/2, r, -Math.PI/2, 2*(++perc/(workMin*60))*Math.PI-Math.PI/2);
           ctx.stroke();
-
+  
           //Update the text;
           if(sec === 60 && min == workMin) {
             document.querySelector('#bell').play();
-
+  
             textUpdate(ctx, restMin, workMin, 0, sec, w, h, lmin);
-
+  
             perc = 0;
             rest = true;
             sec = 1;
@@ -79,31 +84,31 @@ $(document).ready(function() {
           }
           else if(sec === 60){
             textUpdate(ctx, workMin, restMin, min, sec, w, h, lmin);
-
+  
             min++;
             sec = 1;
           }
           else {
             textUpdate(ctx, workMin, restMin, min, sec, w, h, lmin);
-
+  
             sec++;
           }
         }
-
+  
         //rest time!
         else if(round <= rounds) {
           //Update the circle;
           ctx.beginPath();
           ctx.arc(w/2, h/2, r, 2*(++perc/(restMin*60))*Math.PI-Math.PI/2, 2*Math.PI-Math.PI/2);
           ctx.stroke();
-
+  
           //Update the text;
           if(sec === 60 && min == restMin) {
             document.querySelector('#bell').play();
-
+  
             textUpdate(ctx, workMin, restMin, 0, sec, w, h, lmin);
             $('#round-counter').text('Round ' + round);
-
+  
             perc = 0;
             rest = false;
             sec = 1;
@@ -111,17 +116,17 @@ $(document).ready(function() {
           }
           else if(sec === 60){
             textUpdate(ctx, restMin, workMin, min, sec, w, h, lmin);
-
+  
             min++;
             sec = 1;
           }
           else {
             textUpdate(ctx, restMin, workMin, min, sec, w, h, lmin);
-
+  
             sec++;
           }
         }
-
+  
         //Pomodoro ends!
         else {
           run = false;
@@ -133,10 +138,10 @@ $(document).ready(function() {
           round = 1;
           perc = 0;
           rest = false;
-
+  
           //Clear the canvas before drawing on it;
           ctx.clearRect(0,0,250,250);
-
+  
           //Update the text;
           textUpdate(ctx, workMin, restMin, 0, 60, w, h, lmin);
           $('#round-counter').css('opacity', 0).text('Round ' + round);
@@ -151,7 +156,7 @@ $(document).ready(function() {
       $('#round-range, #work-range, #rest-range').prop('disabled', false);
       return clearInterval(timer);
     }
-  });
+  }
 });
 
 function textUpdate(ctx, bigTextMin, smallTextMin, min, sec, w, h, lmin) {

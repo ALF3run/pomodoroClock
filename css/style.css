@@ -1,11 +1,16 @@
 /*page style*/
+@font-face {
+  font-family: 'Poiret One';
+  src: url('../fonts/PoiretOne-Regular.ttf') format('opentype');
+}
+
 html, body  {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 body {
-  background: orange;
+  background: #00ff87;
   background: linear-gradient(-45deg, #00d0ff, #00ff87);
   background-attachment: fixed;
   background-position: center;
