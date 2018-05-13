@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
     
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   </head>
   
   <body>
@@ -20,24 +20,28 @@
       <div class="card">
         <header>
           <h3>Pomodoro Clock</h3>
+          <h4 id="round-counter">Round 1</h4>
         </header>
         <div>
-          <canvas id="clock" width="250px" height="200px" title="Click over to start/pause"></canvas>
+          <!-- Switching to SVG could be a better idea -->
+          <canvas id="clock" width="250px" height="200px" title="Click over to start/rest"></canvas>
           <audio id="bell" src="bell.wav" type="audio/wav"></audio>
           <p>
             <small>Click over the timer</small>
           </p>
         </div>
         <div class="timer-setting-box">
+            <div class="flex-input-box">
+                <label id="rounds">4 Rounds</label>
+                <input type="range" id="round-range" min="1" max="10" value="4"></input>
+              </div>
           <div class="flex-input-box">
             <label>Work Time</label>
             <input type="range" id="work-range" min="1" max="60" value="25" width="40px"></input>
-            <!-- <input type="number" name="work-time" min="1" max="60" value="25"></input> -->
           </div>
           <div class="flex-input-box">
             <label>Rest Time</label>
             <input type="range" id="rest-range" min="1" max="60" value="5"></input>
-            <!-- <input type="number" name="pause-time" min="1" max="60" value="5"></input> -->
           </div>
         </div>
         <footer>

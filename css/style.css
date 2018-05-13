@@ -1,4 +1,4 @@
-/*page style*/ 
+/*page style*/
 html, body  {
   height: 100%;
   margin: 0;
@@ -32,6 +32,12 @@ body {
 }
 
 /*card style*/
+#round-counter {
+  margin-bottom: 0;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
 .card a {
   color: #fff;
   text-decoration: none;
@@ -65,5 +71,5 @@ body {
   justify-content: space-between;
 }
 .timer-setting-box {
-  margin: 1em;
+  margin: 0 1em 1em 1em;
 }
