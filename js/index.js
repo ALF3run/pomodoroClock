@@ -47,7 +47,7 @@ $(document).ready(function() {
     });
 
   $('#clock').click(pomodoroToggle);
-  $(document).keypress(function(e) {
+  $(document).keyup(function(e) {
     if(e.keyCode == 32) pomodoroToggle();
   });
 
